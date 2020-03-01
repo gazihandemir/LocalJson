@@ -33,6 +33,45 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+      /*  // 100tane temel json yazdırma
+      // intellij idea !
+        public static void main(String[] args) {
+            Scanner scn = new Scanner(System.in);
+            String id = "";
+            String name = "";
+            String calories = "";
+            int deger = 0;
+            String json = "";
+            ArrayList<String> list = new ArrayList<>();
+            while (deger != 100) {
+                System.out.println("id : ");
+                id = scn.nextLine();
+                System.out.println("name : ");
+                name = scn.nextLine();
+                System.out.println("calories : ");
+                calories = scn.nextLine();
+                json = "{ \n " +
+                        "       \"id\" : \"" + id + "\",\n" +
+                        "       \"name\" : \"" + name + "\",\n" +
+                        "       \"calories\" : \"" + calories + "\",\n},\n";
+*//*            System.out.println("{\n" +
+                    "       \"id\": \"1\",\n" +
+                    "       \"name\": \"Ahududu\",\n" +
+                    "       \"calories\":\"52\"\n" +
+                    "     },");
+            System.out.println("{ \n " +
+                    "       \"id\" : \""+id+"\",\n" +
+                    "       \"name\" : \""+name+"\",\n" +
+                    "       \"calories\" : \""+calories+"\",\n }," );*//*
+                list.add(json);
+                deger++;
+
+            }
+            for (int i =0;i<100;i++){
+                System.out.println(list.get(i));
+            }
+
+        }*/
         CityList cityList = new CityList();
         try {
             // load file
