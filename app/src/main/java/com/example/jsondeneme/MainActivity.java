@@ -25,6 +25,8 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import model.Besinler;
+import model.BesinlerDetails;
 import model.CityList;
 
 public class MainActivity extends AppCompatActivity {
@@ -73,28 +75,54 @@ public class MainActivity extends AppCompatActivity {
 
         }*/
         CityList cityList = new CityList();
+        BesinlerDetails besinlerList = new BesinlerDetails();
         try {
             // load file
-            BufferedReader jsonReader = new BufferedReader(new InputStreamReader(this.getResources().openRawResource(R.raw.deneme)));
+            BufferedReader jsonReader = new BufferedReader(new InputStreamReader(this.getResources().openRawResource(R.raw.besinler)));
             StringBuilder jsonBuilder = new StringBuilder();
             for (String line = null; (line = jsonReader.readLine()) != null; ) {
                 jsonBuilder.append(line).append("\n");
             }
 
             Gson gson = new Gson();
-            cityList = gson.fromJson(jsonBuilder.toString(), CityList.class);
+            //cityList = gson.fromJson(jsonBuilder.toString(), CityList.class);
+            besinlerList = gson.fromJson(jsonBuilder.toString(), BesinlerDetails.class);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+        //1
         Spinner spinner = findViewById(R.id.spinner);
         List<String> spinnerData = new ArrayList<>();
-        for (int i = 0; i < cityList.getCityDetail().size(); i++) {
+        //2
+        Spinner spinner1 = findViewById(R.id.spinner2);
+        List<String> spinnerData2 = new ArrayList<>();
+        //3
+        Spinner spinner2= findViewById(R.id.spinner3);
+        List<String> spinnerData3 = new ArrayList<>();
+        /*   for (int i = 0; i < cityList.getCityDetail().size(); i++) {
             spinnerData.add(cityList.getCityDetail().get(i).getName());
+        }*/
+        for (int i = 0; i < besinlerList.getBesinler().size(); i++) {
+            spinnerData.add(besinlerList.getBesinler().get(i).getName());
         }
+        for (int i=0;i<besinlerList.getBesinler().size();i++){
+            spinnerData2.add(besinlerList.getBesinler().get(i).getCalories());
+        }
+        for (int i=0;i<besinlerList.getBesinler().size();i++){
+            spinnerData3.add(besinlerList.getBesinler().get(i).getPorsiyon());
+        }
+        // 1
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, spinnerData);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
-
+        // 2
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, spinnerData2);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner1.setAdapter(dataAdapter2);
+        // 3
+        ArrayAdapter<String> dataAdapter3 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, spinnerData3);
+        dataAdapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner2.setAdapter(dataAdapter3);
     }
 }
